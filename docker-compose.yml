@@ -1,7 +1,7 @@
 ---
 services:
     php:
-        build: ./php/${PHP_VERSION}
+        image: php:${PHP_VERSION}-apache
         container_name: php
         volumes_from:
             - source
@@ -17,7 +17,7 @@ services:
         restart: unless-stopped
 
     web_server:
-        build: ./${WEB_SERVER_TYPE}
+        image: nginx:latest
         container_name: web_server
         depends_on:
             - source
@@ -37,7 +37,7 @@ services:
         restart: unless-stopped
 
     db:
-        build: ./${DB_SERVER_TYPE}
+        image: mysql:latest
         container_name: db
         volumes:
             - ./${DB_SERVER_TYPE}/init:/docker-entrypoint-initdb.d
@@ -74,7 +74,7 @@ services:
         restart: unless-stopped
 
     adminer:
-        image: dockette/adminer:full
+        image: adminer:latest
         container_name: adminer
         links:
             - db:db
