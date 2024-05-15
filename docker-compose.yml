@@ -1,7 +1,7 @@
 ---
 services:
     php:
-        image: php:${PHP_VERSION}-apache
+        image: php:8.2-apache
         container_name: php
         volumes_from:
             - source
