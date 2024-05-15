@@ -1,7 +1,7 @@
 ---
 services:
     php:
-        image: phpdockerio/php:8.2-fpm
+        build: ./php/${PHP_VERSION}
         container_name: php
         volumes_from:
             - source
